@@ -34,11 +34,7 @@ def fb_name_to_id(pagename):
     return json_result["id"]
 
 
-# result2 = fb_name_to_id("chosun")
-
-
 # 페이스북 페이지네임, 시작날짜, 끝날짜를 주면 json 형태로 데이타를 리턴해준다.
-
 
 def fb_get_post_list(pagename, from_date, to_date):
     page_id = fb_name_to_id(pagename)
@@ -60,7 +56,6 @@ def fb_get_post_list(pagename, from_date, to_date):
             c += 1
 
         paging = tmpPostList.get("paging").get("next")
-        # paging = tmpPostList["paging"]["next"]
 
         if paging != None:
             url = paging
@@ -68,6 +63,8 @@ def fb_get_post_list(pagename, from_date, to_date):
             isNext = False
 
     print(c)
+
+
     # save results to file
     with open("/Users/huxx_j/Downloads/ex/" + pagename + ".json", 'w', encoding='utf-8') as outfile:
         json_string = json.dumps(postList, indent=4, sort_keys=True, ensure_ascii=False)
